@@ -23,7 +23,6 @@ server.get('/*', restify.plugins.serveStatic({
 
 const handlerRequestUrl = (error, response, body) => {
     if (error) {
-        response.send(error);
         console.log('error:', error);
         return;
     }

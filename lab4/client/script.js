@@ -10,14 +10,20 @@ $("#submit-button").on("click", function (event) {
         contentType: false,
         processData: false,
         success: successGetDataUrls,
-        reject: rejectGetDataUrls
+        error: rejectGetDataUrls
     });
 });
 
 function successGetDataUrls(data) {
-    console.log(data);
+    const parseData = JSON.parse(data);
+    $("#access-urls").html("");
+    $("#error").html("");
+    parseData.map((item) => {
+        $("#access-urls").append('<a href="' + item.url + '">' + item.url + '</a>');
+    });
 }
 
 function rejectGetDataUrls(error) {
-    console.log(error);
+    $("#access-urls").html("");
+    $("#error").append('<h3>' + error.responseJSON.message + '</h3>');
 }

@@ -1,11 +1,5 @@
 const restify = require('restify'),
-    config  = require('./config'),
-    request = require('request'),
-    controller = require("./utils");
-
-let requestUrl = "https://vk.com";
-const protocolReqUrl = requestUrl.split("/")[0];
-const domainReqUrl = requestUrl.split("/")[2];
+    config  = require('./config');
 
 const server = restify.createServer({
     name: config.name,
@@ -20,19 +14,6 @@ server.get('/*', restify.plugins.serveStatic({
     directory: './client',
     default: 'index.html'
 }));
-
-const handlerRequestUrl = (error, response, body) => {
-    if (error) {
-        console.log('error:', error);
-        return;
-    }
-    console.log('statusCode:', response && response.statusCode);
-    let dataUrls = controller.createBodyDataHtml(body);
-    const newData = controller.filterUrl(dataUrls, protocolReqUrl, domainReqUrl);
-    console.log(newData);
-};
-
-request(requestUrl, handlerRequestUrl);
 
 server.on('restifyError', (req, res, err, callback) => {
     return callback();

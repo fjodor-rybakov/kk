@@ -14,16 +14,31 @@ $("#submit-button").on("click", function (event) {
     });
 });
 
+
+function resetContent() {
+    $("#accept-urls").html("");
+    $("#reject-urls").html("");
+    $("#error").html("");
+}
+
 function successGetDataUrls(data) {
     const parseData = JSON.parse(data);
-    $("#access-urls").html("");
-    $("#error").html("");
-    parseData.map((item) => {
-        $("#access-urls").append('<a href="' + item.url + '">' + item.url + '</a>');
+    resetContent();
+    parseData.acceptLinks.map((item) => {
+        $("#accept-urls").append('<div>' +
+                '<a href="' + item.url + '">' + item.url + '</a>' +
+                '<p>' + item.status + '</p>' +
+            '</div>');
+    });
+    parseData.rejectLinks.map((item) => {
+        $("#reject-urls").append('<div>' +
+            '<a href="' + item.url + '">' + item.url + '</a>' +
+            '<p>' + item.status + '</p>' +
+            '</div>');
     });
 }
 
 function rejectGetDataUrls(error) {
-    $("#access-urls").html("");
+    resetContent();
     $("#error").append('<h3>' + error.responseJSON.message + '</h3>');
 }

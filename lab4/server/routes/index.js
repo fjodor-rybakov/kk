@@ -102,6 +102,7 @@ module.exports = (server) => {
 
     function checkCorrectUrl(requestUrl, response, next) {
         if (next) {
+            console.log(next);
             next();
         }
 

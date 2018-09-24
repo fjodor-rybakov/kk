@@ -26,7 +26,7 @@ module.exports = {
                 return void 0;
             }
 
-            if (tempValue[tempValue.length - 1] === ";") { // Удаление ссылок с кодом javascript
+            if (tempValue.split(":")[0] === "javascript") { // Удаление ссылок с кодом javascript
                 return void 0;
             }
 

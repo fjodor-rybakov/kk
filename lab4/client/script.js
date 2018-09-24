@@ -17,6 +17,7 @@ $("#submit-button").on("click", function (event) {
 
 function resetContent() {
     $("#accept-urls").html("");
+    $("#info").html("");
     $("#reject-urls").html("");
     $("#error").html("");
 }
@@ -24,6 +25,10 @@ function resetContent() {
 function successGetDataUrls(data) {
     const parseData = JSON.parse(data);
     resetContent();
+    let info = parseData.dataWork;
+    $("#info").append('<div>' +
+        '<p>Общее время поиска: ' + info.workTime + ' сек. </p>' + '<p>Всего ссылок: ' + info.countLinks + '</p>' +
+        '</div>');
     parseData.acceptLinks.map((item) => {
         $("#accept-urls").append('<div>' +
                 '<a href="' + item.url + '">' + item.url + '</a>' +

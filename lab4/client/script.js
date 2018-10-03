@@ -31,13 +31,13 @@ function successGetDataUrls(data) {
         '</div>');
     parseData.acceptLinks.map((item) => {
         $("#accept-urls").append('<div>' +
-                '<a href="' + item.url + '">' + item.url + '</a>' +
+                '<a href="' + item.url + '" target="_blank" >' + item.url + '</a>' +
                 '<p>' + item.status + '</p>' +
             '</div>');
     });
     parseData.rejectLinks.map((item) => {
         $("#reject-urls").append('<div>' +
-            '<a href="' + item.url + '">' + item.url + '</a>' +
+            '<a href="' + item.url + '" target="_blank">' + item.url + '</a>' +
             '<p>' + item.status + '</p>' +
             '</div>');
     });
